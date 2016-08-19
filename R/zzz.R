@@ -9,4 +9,5 @@
   packageStartupMessage(
     sprintf("Loaded %s (%s) -- Fault reactiviation according to Rick Sibson",
             pack, utils::packageVersion(pack)))
+
 }

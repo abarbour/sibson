@@ -2,14 +2,9 @@
 % Please edit documentation in R/sibson-package.R
 \docType{package}
 \name{sibson}
-\alias{Set1}
 \alias{sibson}
 \alias{sibson-package}
 \title{Fault reactivation}
-\format{An object of class \code{character} of length 9.}
-\usage{
-Set1
-}
 \description{
 The functions in this package can be used to calculate various properties
 of a fault in idealized rock, including frictional coefficients, stability angles, and
@@ -28,5 +23,4 @@ A note on fault reactivation,
 \seealso{
 \code{\link{Sibson.fric}}
 }
-\keyword{datasets}
 
