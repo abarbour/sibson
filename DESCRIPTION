@@ -4,11 +4,8 @@ Title: Calculate stability criterion for faults with friction
 Version: 0.1.0
 Author: Andrew J Barbour
 Maintainer: Andrew J Barbour <andy.barbour@gmail.com>
-Description: More about what it does (maybe more than one line)
+Description: The functions in this package can be used to calculate various properties of a fault in idealized rock, including frictional coefficients, stability angles, and stress ratio, etc.
 License: GPL
 LazyData: TRUE
-Imports:
-    Rcpp (>= 0.12.5)
-LinkingTo: Rcpp
 RoxygenNote: 5.0.1
-Url:
+Url: https://github.com/abarbour/sibson

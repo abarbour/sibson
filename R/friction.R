@@ -1,65 +1,6 @@
-#!/usr/bin/env Rscript --no-save
-
-###
-#	stability.R
-#	/Users/abarbour/Dropbox/Fault.stability
-#	Created by
-#		/Users/abarbour/bin/ropen ( v. 2.4.3 )
-#	on
-#		2016:229 (16-August)
-###
-
-## local functions
-#try(source('funcs.R'))
-
-## libs
-
-#if (!require("pacman")) install.packages("pacman", dependencies=TRUE)
-#pacman::p_load(package1, package2, package_n)
-
-#library(tidyr)
-#library(dplyr, warn.conflicts = FALSE, quietly = TRUE) # load after plyr
-
-## local/github libs
-# devtools::install_github("abarbour/kook")
-library(kook)
-Set1 <- brew.set1()
-Set1l <- brew.set1(TRUE)
-
-#' @title Utility functions
-#' @name Utilities
-#' @rdname sib.utils
-#' @param x vector of values
-#' @param lim numeric; the limit for sawtoothin'
-#' @param rad numeric; angle in radians
-lower.saw <- function(x, lim=min(x, na.rm=TRUE)){
-  # reduce a vector to a sawtooth
-  #lim <- abs(lim)
-  while (any(x < lim)){
-    message('lower saw...')
-    inds <- x < lim
-    x[inds] <- x[inds] + lim
-  }
-  return(x)
-}
-#' @rdname sib.utils
-upper.saw <- function(x, lim=max(x, na.rm=TRUE)){
-  # reduce a vector to a sawtooth
-  #lim <- abs(lim)
-  while (any(x > lim)){
-    message('upper...')
-    inds <- x >= lim
-    x[inds] <- x[inds] - lim
-  }
-  return(x)
-}
-#' @rdname sib.utils
-cotan <- function(rad){
-  1/tan(rad)
-}
-
 #' @export
 #' @title Principal stress ratio
+#' @description Calculate the ratio of principal \emph{effective} stresses
 #' @param mu numeric; the static coefficient(s) of friction
 #' @param theta numeric; optional; the orientation(s) of the fault with respect to the principal compressive stress
 #' @param thresh numeric; an arbitrary clipping level for the stress ratio
@@ -75,8 +16,10 @@ StressRatio <- function(mu, theta, thresh=NULL, in.deg=TRUE){
 }
 
 #' @export
-#' @title Static friction coefficient for a fault orientation
+#' @title Static friction coefficient
+#' @description Calculate frictional coefficients for a fault with a given orientation
 #' @inheritParams StressRatio
+#' @param ... additional parameter sent to \code{\link{.Mu.opt}}
 #' @seealso \code{\link{Sibson.fric}}
 Mu <- function(theta, ...){
   theta <- lower.saw(upper.saw(theta, 90), 45)
@@ -103,8 +46,9 @@ Mu <- function(theta, ...){
 
 #' @export
 #' @title Calculate stability conditions for a frictional coefficient
+#' @description Calculate stability conditions for a frictional coefficient
 #' @inheritParams StressRatio
-#' @details Combines output from \code{\link{.StressRatio.opt}} and \code{\link{.Theta.opt}}
+#' @param ... additional parameter sent to\code{\link{.StressRatio.opt}} and \code{\link{.Theta.opt}}
 #' @seealso \code{\link{Sibson.fric}}
 Stability <- function(mu, ...){
   return(c(.StressRatio.opt(mu), .Theta.opt(mu, ...)))
@@ -126,6 +70,7 @@ Stability <- function(mu, ...){
 
 #' @export
 #' @title Calculate failure criterion for a given set of frictional coefficients
+#' @description Calculate failure criterion for a given set of frictional coefficients
 #' @inheritParams StressRatio
 #' @param verbose logical; should the optimal parameters be printed?
 #' @return An object with class \code{"sibson.fric"}
@@ -167,6 +112,7 @@ Sibson.fric <- function(mu, theta, thresh, verbose=TRUE){
 
 #' @export
 #' @title Plot stability conditions
+#' @description Plot conditions for fault stability
 #' @method plot sibson.fric
 #' @param x An object with class \code{"sibson.fric"}
 #' @param add logical; should the information be added to the current device
@@ -212,6 +158,7 @@ lines.sibson.fric <- function(x, ...){
 
 #' @export
 #' @title Plot optimal angles and stress ratios for fault failure
+#' @description Plot optimal angles and stress ratios for fault failure
 #' @param x object to plot
 #' @inheritParams plot.sibson.fric
 #' @seealso \code{\link{Sibson.fric}}
@@ -278,6 +225,7 @@ optplot.sibson.fric <- function(x, add=FALSE, opt=FALSE, opt.col='grey', ...){
 
 #' @export
 #' @title Plot friction-estimation curves with uncertainty
+#' @description Plot friction-estimation curves with uncertainty
 #' @param dT numeric; the uncertainty in the lockup angle(s)
 #' @param Angs numeric; lockup angle(s)
 #' @param Sib. \code{"sibson.fric"} object
