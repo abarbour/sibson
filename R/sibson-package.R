@@ -17,5 +17,5 @@
 #' 751-754
 #' \url{http://dx.doi.org/10.1016/0191-8141(85)90150-6}
 #' @seealso \code{\link{Sibson.fric}}
-Set1 <- kook::brew.set1()
-Set1l <- kook::brew.set1(TRUE)
+Set1 <- c("#E41A1C","#377EB8","#4DAF4A","#984EA3","#FF7F00","#FFFF33","#A65628","#F781BF","#999999")
+Set1l <- c("#FBB4AE","#B3CDE3","#CCEBC5","#DECBE4","#FED9A6","#FFFFCC","#E5D8BD","#FDDAEC","#F2F2F2")

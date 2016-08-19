@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 .git*
 .Rproj.user
+^\.travis\.yml$
