@@ -1,11 +1,17 @@
 #' @export
 #' @title Principal stress ratio
 #' @description Calculate the ratio of principal \emph{effective} stresses
+#' @details The ratio of principal effective stresses, \eqn{R}, is given by
+#' \deqn{R=\frac{\sigma_1 - P}{\sigma_3 - P}=\frac{\sigma_1'}{\sigma_3'}=\frac{1 + \mu/\tan{\theta}}{1 - \mu \tan{\theta}}}
+#' where \eqn{P} is the pore fluid pressure. This function calculates \eqn{R} as given above
+#' and in Equation 4 from Sibson (1985).
 #' @param mu numeric; the static coefficient(s) of friction
 #' @param theta numeric; optional; the orientation(s) of the fault with respect to the principal compressive stress
 #' @param thresh numeric; an arbitrary clipping level for the stress ratio
 #' @param in.deg logical; is \code{theta} given in degrees?
-#' @seealso \code{\link{Sibson.fric}}
+#' @seealso \code{\link{Sibson.fric}}, and
+#' \code{\link{Stability}}, which calculates the minimum \eqn{R} for reactivation.
+#' @references Sibson (1995; Equation 4)
 StressRatio <- function(mu, theta, thresh=NULL, in.deg=TRUE){
   if (in.deg) theta <- theta * pi /180
   R <- (1 + mu * cotan(theta))/(1 - mu * tan(theta))
@@ -37,7 +43,10 @@ Mu <- function(theta, ...){
   }
   mu <- round(cotan(theta), precision)
   if (length(delta.theta) > 1 & (length(delta.theta) != length(theta))) warning('uncertainties recycled -- check length')
+  
+  # found by differentiation
   delta.mu <- delta.theta^2 * sqrt(tan(theta)^2 + cotan(theta)^2)
+  
   if (in.deg){
     theta <- theta * 180 / pi
   }
@@ -57,12 +66,14 @@ Stability <- function(mu, ...){
 #' @export
 #' @rdname Stability
 .StressRatio.opt <- function(mu){
+  # Sibson (1985, Equation 5)
   return(c(`R.opt`=(sqrt(1 + mu^2) + mu)^2))
 }
 
 #' @export
 #' @rdname Stability
 .Theta.opt <- function(mu, in.deg=TRUE){
+  # Sibson (1985, just after Equation 5)
   theta <- atan(1/mu)/2
   if (in.deg) theta <- theta * 180 / pi
   return(c(theta=theta, `2*theta`=2*theta))
@@ -159,11 +170,14 @@ lines.sibson.fric <- function(x, ...){
 #' @export
 #' @title Plot optimal angles and stress ratios for fault failure
 #' @description Plot optimal angles and stress ratios for fault failure
+#' @details  Plots the variation in the optimum reactivation angle and minimum
+#' (positive) stress ratio for reactivation as a function of friction.
+#' Note that the stress ratio if calculated with \code{\link{StressRatio}}.
 #' @param x object to plot
 #' @inheritParams plot.sibson.fric
 #' @seealso \code{\link{Sibson.fric}}
 #' @examples
-#' optplot()
+#' optplot() # Reproduces Sibson (1985; Figure 2) by default
 optplot <- function(x, ...) UseMethod("optplot")
 #' @export
 #' @method optplot default

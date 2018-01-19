@@ -3,3 +3,4 @@
 .git*
 .Rproj.user
 ^\.travis\.yml$
+NOBUILD

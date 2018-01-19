@@ -18,6 +18,16 @@ StressRatio(mu, theta, thresh = NULL, in.deg = TRUE)
 \description{
 Calculate the ratio of principal \emph{effective} stresses
 }
+\details{
+The ratio of principal effective stresses, \eqn{R}, is given by
+\deqn{R=\frac{\sigma_1 - P}{\sigma_3 - P}=\frac{\sigma_1'}{\sigma_3'}=\frac{1 + \mu/\tan{\theta}}{1 - \mu \tan{\theta}}}
+where \eqn{P} is the pore fluid pressure. This function calculates \eqn{R} as given above
+and in Equation 4 from Sibson (1985).
+}
+\references{
+Sibson (1995; Equation 4)
+}
 \seealso{
-\code{\link{Sibson.fric}}
+\code{\link{Sibson.fric}}, and
+\code{\link{Stability}}, which calculates the minimum \eqn{R} for reactivation.
 }

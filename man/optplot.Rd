@@ -14,8 +14,13 @@ optplot(x, ...)
 \description{
 Plot optimal angles and stress ratios for fault failure
 }
+\details{
+Plots the variation in the optimum reactivation angle and minimum
+(positive) stress ratio for reactivation as a function of friction.
+Note that the stress ratio if calculated with \code{\link{StressRatio}}.
+}
 \examples{
-optplot()
+optplot() # Reproduces Sibson (1985; Figure 2) by default
 }
 \seealso{
 \code{\link{Sibson.fric}}
