@@ -21,4 +21,3 @@ Calculate the ratio of principal \emph{effective} stresses
 \seealso{
 \code{\link{Sibson.fric}}
 }
-

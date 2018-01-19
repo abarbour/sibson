@@ -20,4 +20,3 @@ optplot()
 \seealso{
 \code{\link{Sibson.fric}}
 }
-

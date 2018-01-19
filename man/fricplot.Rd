@@ -27,4 +27,3 @@ fricplot()
 \seealso{
 \code{\link{Sibson.fric}} and \code{\link{Mu}}
 }
-
