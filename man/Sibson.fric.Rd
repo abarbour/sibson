@@ -37,3 +37,4 @@ plot(S)
 \seealso{
 \code{\link{StressRatio}} and \code{\link{Stability}}; \code{\link{plot.sibson.fric}}
 }
+

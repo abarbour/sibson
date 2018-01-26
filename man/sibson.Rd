@@ -10,6 +10,9 @@ The functions in this package can be used to calculate various properties
 of a fault in idealized rock, including frictional coefficients, stability angles, and
 stress ratio, etc.
 }
+\author{
+A.J. Barbour
+}
 \references{
 Sibson, R. H. (1985),
 A note on fault reactivation,
@@ -20,6 +23,4 @@ A note on fault reactivation,
 \seealso{
 \code{\link{Sibson.fric}}
 }
-\author{
-A.J. Barbour
-}
+

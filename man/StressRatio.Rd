@@ -31,3 +31,4 @@ Sibson (1995; Equation 4)
 \code{\link{Sibson.fric}}, and
 \code{\link{Stability}}, which calculates the minimum \eqn{R} for reactivation.
 }
+
