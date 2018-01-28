@@ -9,7 +9,7 @@ Description: The functions in this package can be used to calculate various
     stability angles, and stress ratio, etc.
 License: GPL
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests:
     covr,
     testthat

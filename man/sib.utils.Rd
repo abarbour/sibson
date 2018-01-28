@@ -2,9 +2,9 @@
 % Please edit documentation in R/utilities.R
 \name{Utilities}
 \alias{Utilities}
-\alias{cotan}
 \alias{lower.saw}
 \alias{upper.saw}
+\alias{cotan}
 \title{Utility functions}
 \usage{
 lower.saw(x, lim = min(x, na.rm = TRUE))
@@ -23,4 +23,3 @@ cotan(rad)
 \description{
 Various utility functions
 }
-

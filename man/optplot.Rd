@@ -25,4 +25,3 @@ optplot() # Reproduces Sibson (1985; Figure 2) by default
 \seealso{
 \code{\link{Sibson.fric}}
 }
-
